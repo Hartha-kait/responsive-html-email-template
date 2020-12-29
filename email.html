@@ -1,356 +1,533 @@
 <!doctype html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Simple Transactional Email</title>
-    <style>
-      /* -------------------------------------
-          GLOBAL RESETS
-      ------------------------------------- */
-      
-      /*All the styling goes here*/
-      
-      img {
-        border: none;
-        -ms-interpolation-mode: bicubic;
-        max-width: 100%; 
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Kait Email Template</title>
+
+  <!-- External Font -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+  </style>
+
+  <style>
+    /* -------------------------------------
+      GLOBAL RESETS
+  ------------------------------------- */
+
+    /*All the styling goes here*/
+
+    img {
+      border: none;
+      -ms-interpolation-mode: bicubic;
+      max-width: 100%;
+      height: auto;
+    }
+
+    body {
+      background-color: #f6f6f6;
+      font-family: 'Open Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 1.4;
+      margin: 0;
+      padding: 0;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    table {
+      border-collapse: separate;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+      width: 100%;
+    }
+
+    table td {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    /* -------------------------------------
+      BODY & CONTAINER
+  ------------------------------------- */
+
+    .body {
+      background-color: #F2F7FF;
+      color: #46586B;
+      width: 100%;
+    }
+
+    /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+    .container {
+      display: block;
+      margin: 0 auto !important;
+      /* makes it centered */
+      max-width: 580px;
+      padding: 10px;
+    }
+
+    /* This should also be a block element, so that it will fill 100% of the .container */
+    .content {
+      box-sizing: border-box;
+      display: block;
+      margin: 0 auto;
+      max-width: 580px;
+      padding: 10px;
+    }
+
+    /* -------------------------------------
+      HEADER, FOOTER, MAIN
+  ------------------------------------- */
+    .main {
+      background: #ffffff;
+      border-radius: 3px;
+      width: 100%;
+    }
+
+    .wrapper {
+      box-sizing: border-box;
+      padding: 40px;
+    }
+
+    .content-block {
+      padding-bottom: 10px;
+      padding-top: 10px;
+    }
+
+    .footer {
+      clear: both;
+      margin-top: 10px;
+      text-align: left;
+      /* width: 100%;  */
+      padding: 0 20px;
+    }
+
+    .footer td,
+    .footer p,
+    .footer span,
+    .footer a {
+      color: #46586B;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .footer a {
+      color: #0062FF;
+      text-decoration: none;
+    }
+
+    /* -------------------------------------
+      Description
+  ------------------------------------- */
+    .description-lable {
+      color: #46586B;
+    }
+    .description-value {
+      color: #222D38;
+
+    }
+
+    /* -------------------------------------
+      TYPOGRAPHY
+  ------------------------------------- */
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: #222D38;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.4;
+      margin: 0;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    h3 {
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    p,
+    ul,
+    ol {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    p li,
+    ul li,
+    ol li {
+      list-style-position: inside;
+      margin-left: 5px;
+    }
+
+    p,
+    span {
+      line-height: 24px;
+    }
+
+    a {
+      color: #0062FF;
+      text-decoration: underline;
+    }
+
+    .font-small {
+      font-size: 10px;
+      line-height: 150%;
+    }
+
+    /* -------------------------------------
+      BUTTONS
+  ------------------------------------- */
+    .btn {
+      box-sizing: border-box;
+      width: 100%;
+      text-decoration: none;
+    }
+
+    .btn>tbody>tr>td {
+      padding-bottom: 16px;
+    }
+
+    .btn table {
+      width: auto;
+    }
+
+    .btn table td {
+      background-color: #ffffff;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .btn a {
+      background-color: #ffffff;
+      border: solid 1px #0062FF;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: #0062FF;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 16px;
+      margin: 0;
+      padding: 12px 24px;
+      text-decoration: none;
+      text-transform: capitalize;
+    }
+
+    .btn-primary table td {
+      background-color: #0062FF;
+    }
+
+    .btn-primary a {
+      background-color: #0062FF;
+      border-color: #0062FF;
+      color: #ffffff !important;
+    }
+
+    /* Divider */
+    span.divider {
+      width: 100%;
+      border-bottom: 1px solid #f4f5f6;
+      display: block;
+      margin: 32px 0;
+    }
+
+    /* Logo */
+    .logo {
+      margin-bottom: 16px;
+    }
+
+    /* Hero image, The main image in the emial */
+    .hero {
+      margin-bottom: 40px;
+    }
+
+    .text-right {
+      text-align: right !important;
+    }
+    .text-left {
+      text-align: left !important;
+    }
+
+    /* -------------------------------------
+      OTHER STYLES THAT MIGHT BE USEFUL
+  ------------------------------------- */
+    .last {
+      margin-bottom: 0;
+    }
+
+    .first {
+      margin-top: 0;
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .clear {
+      clear: both;
+    }
+
+    .mt0 {
+      margin-top: 0;
+    }
+
+    .mb0 {
+      margin-bottom: 0;
+    }
+
+    .mb3 {
+      margin-bottom: 30px;
+    }
+
+    .mr1 {
+      margin-right: 10px;
+    }
+
+    .mr28 {
+      margin-right: 28px;
+    }
+
+    .mt30 {
+      margin-top: 30px;
+    }
+
+    .mb20 {
+      margin-bottom: 20px;
+    }
+
+    .mb10 {
+      margin-bottom: 10px;
+    }
+
+    .preheader {
+      color: transparent;
+      display: none;
+      height: 0;
+      max-height: 0;
+      max-width: 0;
+      opacity: 0;
+      overflow: hidden;
+      mso-hide: all;
+      visibility: hidden;
+      width: 0;
+    }
+
+    .powered-by a {
+      text-decoration: none;
+    }
+
+    hr {
+      border: 0;
+      border-bottom: 1px solid #f6f6f6;
+      margin: 20px 0;
+    }
+    
+    .clickable-img {
+      cursor: pointer;
+    }
+
+    /* -------------------------------------
+      RESPONSIVE AND MOBILE FRIENDLY STYLES
+  ------------------------------------- */
+    @media only screen and (max-width: 620px) {
+      table[class=body] h1 {
+        font-size: 28px !important;
+        margin-bottom: 10px !important;
       }
 
-      body {
-        background-color: #f6f6f6;
-        font-family: sans-serif;
-        -webkit-font-smoothing: antialiased;
-        font-size: 14px;
-        line-height: 1.4;
-        margin: 0;
-        padding: 0;
-        -ms-text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%; 
+      table[class=body] p,
+      table[class=body] ul,
+      table[class=body] ol,
+      table[class=body] td,
+      table[class=body] span,
+      table[class=body] a {
+        font-size: 16px !important;
       }
 
-      table {
-        border-collapse: separate;
-        mso-table-lspace: 0pt;
-        mso-table-rspace: 0pt;
-        width: 100%; }
-        table td {
-          font-family: sans-serif;
-          font-size: 14px;
-          vertical-align: top; 
+      table[class=body] .wrapper,
+      table[class=body] .article {
+        padding: 10px !important;
       }
 
-      /* -------------------------------------
-          BODY & CONTAINER
-      ------------------------------------- */
-
-      .body {
-        background-color: #f6f6f6;
-        width: 100%; 
+      table[class=body] .content {
+        padding: 0 !important;
       }
 
-      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
-      .container {
-        display: block;
-        margin: 0 auto !important;
-        /* makes it centered */
-        max-width: 580px;
-        padding: 10px;
-        width: 580px; 
+      table[class=body] .container {
+        padding: 0 !important;
+        width: 100% !important;
       }
 
-      /* This should also be a block element, so that it will fill 100% of the .container */
-      .content {
-        box-sizing: border-box;
-        display: block;
-        margin: 0 auto;
-        max-width: 580px;
-        padding: 10px; 
+      table[class=body] .main {
+        border-left-width: 0 !important;
+        border-radius: 0 !important;
+        border-right-width: 0 !important;
       }
 
-      /* -------------------------------------
-          HEADER, FOOTER, MAIN
-      ------------------------------------- */
-      .main {
-        background: #ffffff;
-        border-radius: 3px;
-        width: 100%; 
+      table[class=body] .btn table {
+        width: 100% !important;
       }
 
-      .wrapper {
-        box-sizing: border-box;
-        padding: 20px; 
+      table[class=body] .btn a {
+        width: 100% !important;
       }
 
-      .content-block {
-        padding-bottom: 10px;
-        padding-top: 10px;
+      table[class=body] .img-responsive {
+        height: auto !important;
+        max-width: 100% !important;
+        width: auto !important;
+      }
+    }
+
+    /* -------------------------------------
+      PRESERVE THESE STYLES IN THE HEAD
+  ------------------------------------- */
+    @media all {
+      .ExternalClass {
+        width: 100%;
       }
 
-      .footer {
-        clear: both;
-        margin-top: 10px;
-        text-align: center;
-        width: 100%; 
-      }
-        .footer td,
-        .footer p,
-        .footer span,
-        .footer a {
-          color: #999999;
-          font-size: 12px;
-          text-align: center; 
+      .ExternalClass,
+      .ExternalClass p,
+      .ExternalClass span,
+      .ExternalClass font,
+      .ExternalClass td,
+      .ExternalClass div {
+        line-height: 100%;
       }
 
-      /* -------------------------------------
-          TYPOGRAPHY
-      ------------------------------------- */
-      h1,
-      h2,
-      h3,
-      h4 {
-        color: #000000;
-        font-family: sans-serif;
-        font-weight: 400;
-        line-height: 1.4;
-        margin: 0;
-        margin-bottom: 30px; 
+      .apple-link a {
+        color: inherit !important;
+        font-family: 'Open Sans', sans-serif;
+        font-size: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+        text-decoration: none !important;
       }
 
-      h1 {
-        font-size: 35px;
-        font-weight: 300;
-        text-align: center;
-        text-transform: capitalize; 
+      #MessageViewBody a {
+        color: inherit;
+        text-decoration: none;
+        font-size: inherit;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: inherit;
+        line-height: inherit;
       }
 
-      p,
-      ul,
-      ol {
-        font-family: sans-serif;
-        font-size: 14px;
-        font-weight: normal;
-        margin: 0;
-        margin-bottom: 15px; 
-      }
-        p li,
-        ul li,
-        ol li {
-          list-style-position: inside;
-          margin-left: 5px; 
+      .btn-primary table td:hover {
+        background-color: #2982ff !important;
       }
 
-      a {
-        color: #3498db;
-        text-decoration: underline; 
+      .btn-primary a:hover {
+        background-color: #2982ff !important;
+        border-color: #2982ff !important;
       }
+    }
 
-      /* -------------------------------------
-          BUTTONS
-      ------------------------------------- */
-      .btn {
-        box-sizing: border-box;
-        width: 100%; }
-        .btn > tbody > tr > td {
-          padding-bottom: 15px; }
-        .btn table {
-          width: auto; 
-      }
-        .btn table td {
-          background-color: #ffffff;
-          border-radius: 5px;
-          text-align: center; 
-      }
-        .btn a {
-          background-color: #ffffff;
-          border: solid 1px #3498db;
-          border-radius: 5px;
-          box-sizing: border-box;
-          color: #3498db;
-          cursor: pointer;
-          display: inline-block;
-          font-size: 14px;
-          font-weight: bold;
-          margin: 0;
-          padding: 12px 25px;
-          text-decoration: none;
-          text-transform: capitalize; 
-      }
+    .table-wrapper {
+      max-width: 600px;
+    }
+  </style>
+</head>
 
-      .btn-primary table td {
-        background-color: #3498db; 
-      }
-
-      .btn-primary a {
-        background-color: #3498db;
-        border-color: #3498db;
-        color: #ffffff; 
-      }
-
-      /* -------------------------------------
-          OTHER STYLES THAT MIGHT BE USEFUL
-      ------------------------------------- */
-      .last {
-        margin-bottom: 0; 
-      }
-
-      .first {
-        margin-top: 0; 
-      }
-
-      .align-center {
-        text-align: center; 
-      }
-
-      .align-right {
-        text-align: right; 
-      }
-
-      .align-left {
-        text-align: left; 
-      }
-
-      .clear {
-        clear: both; 
-      }
-
-      .mt0 {
-        margin-top: 0; 
-      }
-
-      .mb0 {
-        margin-bottom: 0; 
-      }
-
-      .preheader {
-        color: transparent;
-        display: none;
-        height: 0;
-        max-height: 0;
-        max-width: 0;
-        opacity: 0;
-        overflow: hidden;
-        mso-hide: all;
-        visibility: hidden;
-        width: 0; 
-      }
-
-      .powered-by a {
-        text-decoration: none; 
-      }
-
-      hr {
-        border: 0;
-        border-bottom: 1px solid #f6f6f6;
-        margin: 20px 0; 
-      }
-
-      /* -------------------------------------
-          RESPONSIVE AND MOBILE FRIENDLY STYLES
-      ------------------------------------- */
-      @media only screen and (max-width: 620px) {
-        table[class=body] h1 {
-          font-size: 28px !important;
-          margin-bottom: 10px !important; 
-        }
-        table[class=body] p,
-        table[class=body] ul,
-        table[class=body] ol,
-        table[class=body] td,
-        table[class=body] span,
-        table[class=body] a {
-          font-size: 16px !important; 
-        }
-        table[class=body] .wrapper,
-        table[class=body] .article {
-          padding: 10px !important; 
-        }
-        table[class=body] .content {
-          padding: 0 !important; 
-        }
-        table[class=body] .container {
-          padding: 0 !important;
-          width: 100% !important; 
-        }
-        table[class=body] .main {
-          border-left-width: 0 !important;
-          border-radius: 0 !important;
-          border-right-width: 0 !important; 
-        }
-        table[class=body] .btn table {
-          width: 100% !important; 
-        }
-        table[class=body] .btn a {
-          width: 100% !important; 
-        }
-        table[class=body] .img-responsive {
-          height: auto !important;
-          max-width: 100% !important;
-          width: auto !important; 
-        }
-      }
-
-      /* -------------------------------------
-          PRESERVE THESE STYLES IN THE HEAD
-      ------------------------------------- */
-      @media all {
-        .ExternalClass {
-          width: 100%; 
-        }
-        .ExternalClass,
-        .ExternalClass p,
-        .ExternalClass span,
-        .ExternalClass font,
-        .ExternalClass td,
-        .ExternalClass div {
-          line-height: 100%; 
-        }
-        .apple-link a {
-          color: inherit !important;
-          font-family: inherit !important;
-          font-size: inherit !important;
-          font-weight: inherit !important;
-          line-height: inherit !important;
-          text-decoration: none !important; 
-        }
-        #MessageViewBody a {
-          color: inherit;
-          text-decoration: none;
-          font-size: inherit;
-          font-family: inherit;
-          font-weight: inherit;
-          line-height: inherit;
-        }
-        .btn-primary table td:hover {
-          background-color: #34495e !important; 
-        }
-        .btn-primary a:hover {
-          background-color: #34495e !important;
-          border-color: #34495e !important; 
-        } 
-      }
-
-    </style>
-  </head>
-  <body class="">
-    <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+<body class="">
+  <div class="table-wrapper">
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>
         <td>&nbsp;</td>
         <td class="container">
           <div class="content">
-
+    
             <!-- START CENTERED WHITE CONTAINER -->
             <table role="presentation" class="main">
-
+    
               <!-- START MAIN CONTENT AREA -->
               <tr>
                 <td class="wrapper">
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p>Hi there,</p>
-                        <p>Sometimes you just want to send a simple HTML email with a simple design and clear call to action. This is it.</p>
+                        <img class="logo" src="./assets/logo.png" alt="Kait Logo" />
+                        <img class="hero" src="./assets/hero-1.png" alt="Kait Logo" />
+                        <h1>Your account is ready to use!</h1>
+                        <p>Sometimes you just want to send a simple HTML email with a simple design and clear call to
+                          action. This is it.</p>
+    
+                        <!-- Divider Component -->
+                        <span class="divider"></span>
+    
+                        <!-- Description component -->
+                        <h3 class="text-left mb20">Details</h3>
+    
+                        <table class="description">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <span class="description-lable">Date:</span>
+                              </td>
+                              <td>
+                                <p class="description-value">From: <b>Tuesday, October 13, 2020</b></p>
+                                <p class="description-value">To: <b>To: Tuesday, May 17, 2021</b></p>
+                              </td>
+                            </tr>
+    
+                            <tr>
+                              <td>
+                                <span class="description-lable">Time:</span>
+                              </td>
+                              <td>
+                                <p class="description-value"><b>4:30 pm, PST (San Francisco, GMT-08:00)</b></p>
+                              </td>
+                            </tr>
+    
+                            <tr>
+                              <td>
+                                <span class="description-lable">Event Type:</span>
+                              </td>
+                              <td>
+                                <p class="description-value">Virtual Class</b></p>
+                              </td>
+                            </tr>
+    
+                            <tr>
+                              <td>
+                                <span class="description-lable">Course:</span>
+                              </td>
+                              <td>
+                                <p class="description-value">Algebra</b></p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+    
+                        <!-- Divider Component -->
+                        <span class="divider"></span>
+    
+    
+                        <!-- Button Component -->
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                           <tbody>
                             <tr>
@@ -358,7 +535,7 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
                                     <tr>
-                                      <td> <a href="http://htmlemail.io" target="_blank">Call To Action</a> </td>
+                                      <td> <a href="http://htmlemail.io" target="_blank">View my schedule</a> </td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -366,40 +543,64 @@
                             </tr>
                           </tbody>
                         </table>
-                        <p>This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.</p>
-                        <p>Good luck! Hope it works.</p>
+                        <p class="">This is a really simple email template. Its sole purpose is to get the recipient to
+                          click
+                          the button with no distractions.</p>
+                        <p class="">Good luck! Hope it works.</p>
                       </td>
                     </tr>
                   </table>
                 </td>
               </tr>
-
-            <!-- END MAIN CONTENT AREA -->
+    
+              <!-- END MAIN CONTENT AREA -->
             </table>
             <!-- END CENTERED WHITE CONTAINER -->
-
+    
             <!-- START FOOTER -->
             <div class="footer">
               <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td class="content-block">
-                    <span class="apple-link">Company Inc, 3 Abbey Road, San Francisco CA 94102</span>
+                  <td class="content-block font-small">
+                    <p class="apple-link font-small mb10">Download the KAIT Solutions App for:</p>
+                    <img class="clickable-img" class="mr1" src="./assets/app-store.png" alt="App Store" />
+                    <img class="clickable-img" src="./assets/google-play.png" alt="Google Play" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="content-block font-small">
+                    <span class="apple-link font-small">Company Inc, 3 Abbey Road, San Francisco CA 94102</span>
                     <br> Don't like these emails? <a href="http://i.imgur.com/CScmqnj.gif">Unsubscribe</a>.
                   </td>
                 </tr>
                 <tr>
-                  <td class="content-block powered-by">
-                    Powered by <a href="http://htmlemail.io">HTMLemail</a>.
-                  </td>
+    
                 </tr>
+              </table>
+    
+              <table class="mt30">
+                <tbody>
+                  <tr>
+                    <td class="content-block">
+                      <img src="./assets/logo-gray.png" alt="Kait Logo" />
+                    </td>
+                    <td class="content-block text-right">
+                      <img class="mr-a mr28" src="./assets/twitter.png" alt="Kait Logo" />
+                      <img class="mr28" src="./assets/facebook.png" alt="Kait Logo" />
+                      <img src="./assets/linkedin.png" alt="Kait Logo" />
+                  </tr>
+                </tbody>
+    
               </table>
             </div>
             <!-- END FOOTER -->
-
+    
           </div>
         </td>
         <td>&nbsp;</td>
       </tr>
     </table>
-  </body>
+  </div>
+</body>
+
 </html>
